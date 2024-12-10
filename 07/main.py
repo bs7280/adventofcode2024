@@ -13,7 +13,7 @@ def opperate(v1, v2, opp):
         raise ValueError("Invalid opperator")
 
 
-def p1(data):
+def p1(data, operators=["+", "*"]):
     data = data.split("\n")
 
     totals = []
@@ -29,7 +29,7 @@ def p1(data):
         import itertools
         import functools
 
-        for opps in itertools.product(["+", "*", "||"], repeat=len(vals) - 1):
+        for opps in itertools.product(operators, repeat=len(vals) - 1):
             # print(opps)
             tree = list(zip(zip(vals, vals[1:]), opps))
 
@@ -45,7 +45,13 @@ def p1(data):
     print(sum(totals))
 
 
+def p2(data):
+    p1(data, ["||", "+", "*"])
+
+
 with open("data.txt", "r") as fh:
     data = fh.read()
 
 p1(data)
+
+p2(data)
